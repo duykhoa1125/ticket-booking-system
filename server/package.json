@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon --inspect src/app.js",
+    "build": "echo \"No build script required\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
