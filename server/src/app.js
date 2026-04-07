@@ -1,7 +1,7 @@
 const express = require("express"); // Fast, unopinionated, minimalist web framework for Node.js
 const morgan = require("morgan"); // HTTP request logger middleware for node.js
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const router = require("./routes/main");
 const {connectDB} = require("./models/connect_sql");
 const cors = require("cors");
