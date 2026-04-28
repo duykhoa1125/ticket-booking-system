@@ -40,7 +40,7 @@ export function ReviewForm({ movie_id, onReviewSubmit }: ReviewFormProps) {
         const reviewData = response as Partial<MovieReview> | undefined;
         const hasReviewData = Boolean(
           reviewData &&
-            (reviewData.star_rating !== undefined || reviewData.review_content)
+          (reviewData.star_rating !== undefined || reviewData.review_content),
         );
 
         if (hasReviewData && reviewData) {
@@ -241,7 +241,7 @@ export function ReviewForm({ movie_id, onReviewSubmit }: ReviewFormProps) {
         <Button
           onClick={handleSubmit}
           disabled={!isComplete || !currentUser || isSubmitting}
-          className="w-full gap-2 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/20 font-bold h-11"
+          className="w-full gap-2 bg-linear-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/20 font-bold h-11"
           size="lg"
         >
           {isSubmitting ? (
@@ -259,8 +259,8 @@ export function ReviewForm({ movie_id, onReviewSubmit }: ReviewFormProps) {
               {!currentUser
                 ? "Đăng nhập để đánh giá"
                 : hasExistingReview
-                ? "Cập nhật đánh giá"
-                : "Gửi đánh giá"}
+                  ? "Cập nhật đánh giá"
+                  : "Gửi đánh giá"}
             </>
           )}
         </Button>

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Sparkles } from "lucide-react";
 import { eventService } from "@/services";
 import { Event } from "@/services/types";
 import { EventCard } from "@/components/event-card";
+import { RouteLoading } from "@/components/route-loading";
 
 export default function EventsPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,6 +38,29 @@ export default function EventsPage() {
       (event.description || "").toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
+
+  if (loading) {
+    return <RouteLoading variant="events" />;
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        {/* Ambient Background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
+
+        {/* Grid Pattern Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-16">
+          <div className="text-center py-16">
+            <p className="text-red-500 text-lg mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>Thử lại</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -82,47 +105,29 @@ export default function EventsPage() {
           </div>
         </div>
 
-        {/* Loading State */}
-        {loading && (
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-            <p className="text-muted-foreground">Đang tải sự kiện...</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && (
-          <div className="text-center py-16">
-            <p className="text-red-500 text-lg mb-4">{error}</p>
-            <Button onClick={() => window.location.reload()}>Thử lại</Button>
-          </div>
-        )}
-
         {/* Main Content */}
-        {!loading && !error && (
-          <>
-            {/* Events Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredEvents.map((event) => (
-                <EventCard key={event.event_id} event={event} />
-              ))}
-            </div>
+        <>
+          {/* Events Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredEvents.map((event) => (
+              <EventCard key={event.event_id} event={event} />
+            ))}
+          </div>
 
-            {filteredEvents.length === 0 && (
-              <div className="flex flex-col items-center justify-center py-20 text-center border-2 border-dashed border-border/50 rounded-3xl bg-muted/20">
-                <div className="h-20 w-20 bg-muted rounded-full flex items-center justify-center mb-4">
-                  <Search className="w-10 h-10 text-muted-foreground/50" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">
-                  Không tìm thấy sự kiện nào
-                </h3>
-                <p className="text-muted-foreground">
-                  Thử thay đổi từ khóa tìm kiếm của bạn.
-                </p>
+          {filteredEvents.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-20 text-center border-2 border-dashed border-border/50 rounded-3xl bg-muted/20">
+              <div className="h-20 w-20 bg-muted rounded-full flex items-center justify-center mb-4">
+                <Search className="w-10 h-10 text-muted-foreground/50" />
               </div>
-            )}
-          </>
-        )}
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                Không tìm thấy sự kiện nào
+              </h3>
+              <p className="text-muted-foreground">
+                Thử thay đổi từ khóa tìm kiếm của bạn.
+              </p>
+            </div>
+          )}
+        </>
       </div>
     </div>
   );

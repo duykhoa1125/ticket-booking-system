@@ -28,17 +28,17 @@ export function MovieTabs({
       className="w-full space-y-8"
     >
       <div className="flex justify-center">
-        <TabsList className="grid w-full max-w-md grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm rounded-full border border-border/50">
+        <TabsList className="grid w-full max-w-md grid-cols-2 p-1 bg-muted/30 rounded-full border border-border/50">
           <TabsTrigger
             value="now-showing"
-            className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300"
+            className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-colors"
           >
             <Sparkles className="w-4 h-4 mr-2" />
             Đang chiếu ({nowShowingMovies.length})
           </TabsTrigger>
           <TabsTrigger
             value="coming-soon"
-            className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300"
+            className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-colors"
           >
             <Clock className="w-4 h-4 mr-2" />
             Sắp chiếu ({comingSoonMovies.length})
@@ -48,7 +48,7 @@ export function MovieTabs({
 
       <TabsContent
         value="now-showing"
-        className="mt-0 animate-in fade-in slide-in-from-bottom-4 duration-500"
+        className="mt-0"
       >
         <MovieGrid
           movies={nowShowingMovies}
@@ -59,7 +59,7 @@ export function MovieTabs({
 
       <TabsContent
         value="coming-soon"
-        className="mt-0 animate-in fade-in slide-in-from-bottom-4 duration-500"
+        className="mt-0"
       >
         <MovieGrid
           movies={comingSoonMovies}

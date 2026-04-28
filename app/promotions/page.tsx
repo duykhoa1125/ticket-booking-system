@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search, Gift, Calendar, Percent, Tag, Sparkles } from "lucide-react";
 import { voucherService } from "@/services";
 import { useAuth } from "@/lib/auth-context";
 import { AccountWithRole } from "@/services/types";
+import { RouteLoading } from "@/components/route-loading";
 
 // VoucherDetail type - matching mock-data structure
 interface VoucherDetail {
@@ -157,6 +158,25 @@ export default function PromotionsPage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <RouteLoading variant="promotions" />;
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        {/* Ambient Background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl px-6 py-16">
+          <div className="text-center py-16">
+            <p className="text-red-500 text-lg mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>Thử lại</Button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -412,106 +432,89 @@ export default function PromotionsPage() {
           </div>
         </div>
 
-        {/* Loading State */}
-        {loading && (
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-            <p className="text-muted-foreground">Đang tải voucher...</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && (
-          <div className="text-center py-16">
-            <p className="text-red-500 text-lg mb-4">{error}</p>
-            <Button onClick={() => window.location.reload()}>Thử lại</Button>
-          </div>
-        )}
-
         {/* Main Content */}
-        {!loading && !error && (
-          <>
-            {/* Search and Filter */}
-            <div className="mb-16 max-w-2xl mx-auto space-y-6">
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-primary/20 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
-                <div className="relative flex items-center bg-card/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-sm">
-                  <Search className="absolute left-4 text-muted-foreground w-5 h-5" />
-                  <Input
-                    type="text"
-                    placeholder="Tìm kiếm voucher..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-12 h-14 border-none bg-transparent focus-visible:ring-0 text-lg placeholder:text-muted-foreground/70"
-                  />
-                </div>
+        <>
+          {/* Search and Filter */}
+          <div className="mb-16 max-w-2xl mx-auto space-y-6">
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-primary/20 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
+              <div className="relative flex items-center bg-card/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-sm">
+                <Search className="absolute left-4 text-muted-foreground w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder="Tìm kiếm voucher..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-12 h-14 border-none bg-transparent focus-visible:ring-0 text-lg placeholder:text-muted-foreground/70"
+                />
               </div>
-
-              <Tabs
-                value={selectedType}
-                onValueChange={(value) =>
-                  setSelectedType(value as typeof selectedType)
-                }
-                className="w-full"
-              >
-                <TabsList className="grid w-full grid-cols-3 bg-card/50 backdrop-blur-sm p-1 rounded-xl h-14 border border-border/50">
-                  <TabsTrigger
-                    value="all"
-                    className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
-                  >
-                    Tất cả
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="discount"
-                    className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
-                  >
-                    Giảm Giá
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="gift"
-                    className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
-                  >
-                    Quà Tặng
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
             </div>
 
-            {/* Active Vouchers */}
-            <section className="mb-24">
-              <div className="flex items-center gap-4 mb-10">
-                <div className="h-12 w-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary),0.5)]"></div>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                  Voucher Khả Dụng
-                </h2>
-                <Badge
-                  variant="secondary"
-                  className="ml-auto bg-primary/10 text-primary border border-primary/20 px-3 py-1"
+            <Tabs
+              value={selectedType}
+              onValueChange={(value) =>
+                setSelectedType(value as typeof selectedType)
+              }
+              className="w-full"
+            >
+              <TabsList className="grid w-full grid-cols-3 bg-card/50 backdrop-blur-sm p-1 rounded-xl h-14 border border-border/50">
+                <TabsTrigger
+                  value="all"
+                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
                 >
-                  {filteredVouchers.length} voucher
-                </Badge>
-              </div>
+                  Tất cả
+                </TabsTrigger>
+                <TabsTrigger
+                  value="discount"
+                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
+                >
+                  Giảm Giá
+                </TabsTrigger>
+                <TabsTrigger
+                  value="gift"
+                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
+                >
+                  Quà Tặng
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
 
-              {filteredVouchers.length > 0 ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {filteredVouchers.map((voucher) => (
-                    <VoucherCard key={voucher.code} voucher={voucher} />
-                  ))}
+          {/* Active Vouchers */}
+          <section className="mb-24">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-12 w-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary),0.5)]"></div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+                Voucher Khả Dụng
+              </h2>
+              <Badge
+                variant="secondary"
+                className="ml-auto bg-primary/10 text-primary border border-primary/20 px-3 py-1"
+              >
+                {filteredVouchers.length} voucher
+              </Badge>
+            </div>
+
+            {filteredVouchers.length > 0 ? (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {filteredVouchers.map((voucher) => (
+                  <VoucherCard key={voucher.code} voucher={voucher} />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-border/50 rounded-3xl bg-card/30">
+                <div className="h-24 w-24 bg-muted/50 rounded-full flex items-center justify-center mb-6">
+                  <Gift className="w-12 h-12 text-muted-foreground/50" />
                 </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-border/50 rounded-3xl bg-card/30">
-                  <div className="h-24 w-24 bg-muted/50 rounded-full flex items-center justify-center mb-6">
-                    <Gift className="w-12 h-12 text-muted-foreground/50" />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    Không tìm thấy voucher nào
-                  </h3>
-                  <p className="text-muted-foreground max-w-sm mx-auto">
-                    Thử thay đổi từ khóa tìm kiếm hoặc chọn loại voucher khác.
-                  </p>
-                </div>
-              )}
-            </section>
+                <h3 className="text-xl font-bold text-foreground mb-2">
+                  Không tìm thấy voucher nào
+                </h3>
+                <p className="text-muted-foreground max-w-sm mx-auto">
+                  Thử thay đổi từ khóa tìm kiếm hoặc chọn loại voucher khác.
+                </p>
+              </div>
+            )}
+          </section>
 
             {/* Used Vouchers */}
             {usedVouchers.length > 0 && (

@@ -25,17 +25,16 @@ export function EventCard({ event }: EventCardProps) {
   }
 
   return (
-    <Card className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 h-full flex flex-col">
+    <Card className="group overflow-hidden border-border bg-card hover:border-primary/30 transition-colors h-full flex flex-col shadow-sm">
       {/* Image Section */}
-      <div className="relative aspect-video overflow-hidden shrink-0">
-        <div className="absolute inset-0 bg-primary/10 group-hover:scale-105 transition-transform duration-500" />
+      <div className="relative aspect-video overflow-hidden shrink-0 bg-primary/5">
         <div className="absolute inset-0 flex items-center justify-center">
-          <Sparkles className="w-12 h-12 text-primary/40 group-hover:text-primary/60 transition-colors duration-300" />
+          <Sparkles className="w-12 h-12 text-primary/20" />
         </div>
 
         {/* Status Badge Overlay */}
         <div className="absolute top-3 right-3">
-          <Badge className={`${statusColor} backdrop-blur-md border shadow-sm`}>
+          <Badge className={`${statusColor} border shadow-sm`}>
             {statusText}
           </Badge>
         </div>

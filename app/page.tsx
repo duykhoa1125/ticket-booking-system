@@ -4,11 +4,7 @@ import { MovieTabs } from "@/components/movie-tabs";
 import { CinemaCard } from "@/components/cinema-card";
 import { EventCard } from "@/components/event-card";
 import Link from "next/link";
-import { Sparkles, ArrowRight, Film, MapPin, Calendar } from "lucide-react";
-import type { Movie, Cinema, Event } from "@/services/types";
-import type { Metadata } from "next";
-import { BlurText } from "@/components/react-bits/blur-text";
-import { SplitText } from "@/components/react-bits/split-text";
+import { Film, ArrowRight, MapPin, Calendar, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Trang chủ - CinemaHub | Đặt vé phim online nhanh chóng",
@@ -71,46 +67,25 @@ export default async function Home() {
   const featuredCinemas = cinemas.slice(0, 3);
 
   return (
-    <div className="bg-background relative overflow-hidden">
-      {/* Ambient Background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] animate-pulse delay-1000" />
-      </div>
-
-      {/* Grid Pattern Background */}
-      <div className="fixed inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+    <div className="bg-background">
 
       {/* Hero Section */}
       <section className="relative mx-auto max-w-7xl px-6 pt-12 pb-10">
         <div className="mb-12 text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <Film className="h-4 w-4 text-primary" />
             <span className="text-sm font-semibold text-primary">
               Premium Cinema Experience
             </span>
           </div>
 
-          <div className="mb-6 overflow-hidden">
-            <BlurText
-              text="Đặt vé phim online"
-              className="text-5xl md:text-7xl font-bold text-foreground justify-center"
-              delay={150}
-              animateBy="words"
-              direction="top"
-            />
-          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
+            Đặt vé phim online
+          </h1>
 
-          <div className="max-w-2xl mx-auto overflow-hidden">
-            <SplitText
-              text="Trải nghiệm điện ảnh đỉnh cao với hệ thống đặt vé thông minh"
-              className="text-xl text-muted-foreground"
-              delay={50}
-              animationFrom={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-              textAlign="center"
-            />
-          </div>
+          <p className="text-xl text-muted-foreground max-w-2xl text-center">
+            Trải nghiệm điện ảnh đỉnh cao với hệ thống đặt vé thông minh
+          </p>
         </div>
 
         {error ? (
@@ -139,13 +114,9 @@ export default async function Home() {
       {/* Movie Listings */}
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="mb-12 text-center">
-          <BlurText
-            text="Phim đang chiếu"
-            className="text-4xl md:text-5xl font-bold mb-4 text-foreground justify-center"
-            delay={100}
-            animateBy="words"
-            direction="bottom"
-          />
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Phim đang chiếu
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Khám phá những bộ phim blockbuster và các tác phẩm nghệ thuật đặc
             sắc
@@ -226,16 +197,12 @@ export default async function Home() {
       )}
 
       {/* Promotional Section */}
-      <section className="border-y border-border/40 bg-card/30 py-20 relative overflow-hidden">
+      <section className="border-y border-border/40 bg-card/30 py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="group relative overflow-hidden rounded-3xl border border-primary/30 bg-primary p-12 shadow-2xl hover:shadow-primary/30 transition-all duration-500">
-            {/* Animated Glow Effects */}
-            <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-white/20 blur-3xl animate-pulse" />
-            <div className="absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-accent/30 blur-3xl animate-pulse delay-500" />
-
+          <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary p-12 shadow-xl transition-all duration-300">
             {/* Content */}
             <div className="relative flex flex-col md:flex-row items-center md:items-start gap-8">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-white/20 backdrop-blur-sm ring-4 ring-white/30 animate-float">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20">
                 <Sparkles className="h-10 w-10 text-white" />
               </div>
 
@@ -243,15 +210,15 @@ export default async function Home() {
                 <h3 className="mb-4 text-4xl font-bold text-white">
                   Ưu đãi đặc biệt dành cho bạn
                 </h3>
-                <p className="mb-8 max-w-2xl text-lg text-white/95 leading-relaxed">
+                <p className="mb-8 max-w-2xl text-lg text-white/90 leading-relaxed">
                   Khám phá hàng ngàn voucher giảm giá và chương trình khuyến mãi
                   độc quyền. Đặt vé ngay hôm nay để nhận ưu đãi tốt nhất!
                 </p>
 
                 <Link href="/promotions">
-                  <button className="group/btn inline-flex items-center gap-3 rounded-2xl bg-white px-10 py-5 font-bold text-primary shadow-2xl transition-all hover:scale-105 hover:shadow-white/20 active:scale-95">
+                  <button className="group/btn inline-flex items-center gap-3 rounded-2xl bg-white px-10 py-5 font-bold text-primary shadow-lg transition-all active:scale-95">
                     <span className="text-lg">Xem tất cả ưu đãi</span>
-                    <ArrowRight className="h-6 w-6 transition-transform group-hover/btn:translate-x-2" />
+                    <ArrowRight className="h-6 w-6 transition-transform group-hover/btn:translate-x-1" />
                   </button>
                 </Link>
               </div>

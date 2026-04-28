@@ -29,22 +29,21 @@ export function Carousel({ items }: CarouselProps) {
       {items.map((item, index) => (
         <div
           key={item.movie_id}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
+          className={`absolute inset-0 transition-opacity duration-700 ${
             index === current ? "opacity-100" : "opacity-0"
           }`}
         >
           <img
             src={item.image || "/placeholder.svg"}
             alt={item.name}
-            className="h-full w-full object-cover transition-transform duration-[10s] ease-linear scale-105"
-            style={{ transform: index === current ? "scale(1.1)" : "scale(1)" }}
+            className="h-full w-full object-cover"
           />
           {/* Enhanced Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
           <div className="absolute bottom-0 left-0 right-0 p-12 text-white">
-            <div className="max-w-3xl space-y-4 animate-in slide-in-from-bottom-10 fade-in duration-700">
+            <div className="max-w-3xl space-y-4">
               <h2 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
                 {item.name}
               </h2>
@@ -66,14 +65,14 @@ export function Carousel({ items }: CarouselProps) {
       {/* Controls */}
       <button
         onClick={prev}
-        className="absolute left-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 p-4 transition-all hover:bg-primary hover:border-primary hover:scale-110 opacity-0 group-hover:opacity-100"
+        className="absolute left-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 p-4 transition-all hover:bg-primary opacity-0 group-hover:opacity-100"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6 text-white" />
       </button>
       <button
         onClick={next}
-        className="absolute right-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 p-4 transition-all hover:bg-primary hover:border-primary hover:scale-110 opacity-0 group-hover:opacity-100"
+        className="absolute right-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 p-4 transition-all hover:bg-primary opacity-0 group-hover:opacity-100"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6 text-white" />

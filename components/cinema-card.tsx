@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, Film, ArrowRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { MapPin, Film } from "lucide-react";
 import { Cinema } from "@/services/types";
 
 interface CinemaCardProps {
@@ -10,11 +8,11 @@ interface CinemaCardProps {
 
 export function CinemaCard({ cinema }: CinemaCardProps) {
   return (
-    <Card className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 flex flex-col h-full">
+    <Card className="group overflow-hidden border-border bg-card hover:border-primary/40 transition-colors flex flex-col h-full shadow-sm">
       {/* Decorative Header */}
-      <div className="relative h-32 overflow-hidden bg-primary/10 group-hover:bg-primary/20 transition-all duration-500">
+      <div className="relative h-32 overflow-hidden bg-primary/5">
         <div className="absolute inset-0 flex items-center justify-center">
-          <Film className="w-12 h-12 text-primary/40 group-hover:scale-110 transition-transform duration-500" />
+          <Film className="w-12 h-12 text-primary/20" />
         </div>
         <div className="absolute bottom-4 left-4 right-4">
           <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
