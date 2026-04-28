@@ -67,26 +67,14 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Ambient Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
-      
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-
-      <div className="relative mx-auto max-w-7xl px-6 py-16">
+    <div className="min-h-screen bg-slate-50">
+      <div className="mx-auto max-w-7xl px-6 py-16">
         {/* Hero Section */}
-        <div className="mb-20 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-medium animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <MessageSquare className="w-4 h-4" />
-            <span>Hỗ Trợ 24/7</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100 tracking-tight">
-            Liên Hệ Với Chúng Tôi
+        <div className="mb-20 text-center space-y-4">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900">
+            Liên hệ với chúng tôi
           </h1>
-          
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Chúng tôi luôn sẵn sàng lắng nghe và giải đáp mọi thắc mắc của bạn. 
             Hãy kết nối với CinemaHub ngay hôm nay.
           </p>
@@ -97,24 +85,22 @@ export default function ContactPage() {
           {contactInfo.map((info, index) => (
             <Card
               key={index}
-              className="group relative overflow-hidden p-6 border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300"
+              className="p-6 border border-slate-200 bg-white shadow-sm rounded-xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
               <div className="relative flex flex-col items-center text-center gap-4 h-full justify-between">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-inner">
+                  <div className="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-primary">
                     {info.icon}
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="font-bold text-lg text-slate-900 mb-2">
                       {info.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{info.content}</p>
+                    <p className="text-sm text-slate-600 leading-relaxed">{info.content}</p>
                   </div>
                 </div>
                 
-                <Button variant="link" className="text-primary/80 hover:text-primary p-0 h-auto font-medium group-hover:translate-x-1 transition-transform" asChild>
+                <Button variant="link" className="text-primary hover:text-primary/80 p-0 h-auto font-medium" asChild>
                   <a href={info.href}>{info.action} &rarr;</a>
                 </Button>
               </div>
@@ -132,38 +118,33 @@ export default function ContactPage() {
           {/* Sidebar Column */}
           <div className="lg:col-span-5 space-y-6">
              {/* Map Placeholder */}
-            <Card className="overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm shadow-lg h-[300px] relative group" id="map">
-              <div className="absolute inset-0 bg-muted flex items-center justify-center">
+            <Card className="overflow-hidden border border-slate-200 bg-white shadow-sm h-[300px] relative group" id="map">
+              <div className="absolute inset-0 bg-slate-50 flex items-center justify-center">
                  <div className="text-center p-6 space-y-4 z-10">
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-2 group-hover:scale-110 transition-transform">
+                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-2">
                         <MapPin className="h-8 w-8" />
                     </div>
-                    <h3 className="text-lg font-semibold">Bản đồ rạp chiếu</h3>
-                    <p className="text-muted-foreground text-sm max-w-[250px] mx-auto">
+                    <h3 className="text-lg font-semibold text-slate-900">Bản đồ rạp chiếu</h3>
+                    <p className="text-slate-600 text-sm max-w-[250px] mx-auto">
                       123 Đường Phim, Quận 1, TP. Hồ Chí Minh
                     </p>
-                    <Button variant="outline" className="mt-2 hover:bg-primary hover:text-white">
+                    <Button variant="outline" className="mt-2">
                       Xem trên Google Maps
                     </Button>
-                 </div>
-                 {/* Abstract map pattern background */}
-                 <div className="absolute inset-0 opacity-10" 
-                      style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
                  </div>
               </div>
             </Card>
 
             {/* Working Hours */}
-            <Card className="p-6 border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg">
+            <Card className="p-6 border border-slate-200 bg-white shadow-sm rounded-xl">
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <div className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary border border-slate-200">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-foreground">
-                    Giờ Làm Việc
+                  <h2 className="text-xl font-bold text-slate-900">
+                    Giờ làm việc
                   </h2>
-                  <p className="text-xs text-muted-foreground">Thời gian hoạt động của rạp</p>
                 </div>
               </div>
 
@@ -171,12 +152,12 @@ export default function ContactPage() {
                 {workingHours.map((schedule, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center pb-3 border-b border-border/50 last:border-0 last:pb-0"
+                    className="flex justify-between items-center pb-3 border-b border-slate-100 last:border-0 last:pb-0"
                   >
-                    <span className="font-medium text-foreground text-sm">
+                    <span className="font-medium text-slate-700 text-sm">
                       {schedule.day}
                     </span>
-                    <Badge variant="secondary" className="bg-primary/5 text-primary hover:bg-primary/10 transition-colors">
+                    <Badge variant="secondary" className="bg-slate-50 text-slate-900 border border-slate-200">
                       {schedule.time}
                     </Badge>
                   </div>
@@ -185,17 +166,17 @@ export default function ContactPage() {
             </Card>
 
             {/* Social Media */}
-            <Card className="p-6 border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg">
-              <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-                Theo Dõi Chúng Tôi
+            <Card className="p-6 border border-slate-200 bg-white shadow-sm rounded-xl">
+              <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                Theo dõi chúng tôi
               </h2>
-              <div className="flex gap-4 justify-between sm:justify-start">
+              <div className="flex gap-4">
                 {socialLinks.map((social, i) => (
                   <Button
                     key={i}
                     variant="outline"
                     size="icon"
-                    className={`h-12 w-12 rounded-xl border-border/50 hover:bg-background hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group`}
+                    className={`h-12 w-12 rounded-xl border-slate-200 hover:bg-slate-50 transition-all group`}
                     asChild
                   >
                     <a href={social.href}>
@@ -211,13 +192,13 @@ export default function ContactPage() {
         {/* FAQ Section */}
         <div className="max-w-4xl mx-auto mb-20">
              <div className="text-center mb-10">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                    Câu Hỏi Thường Gặp
+                <h2 className="text-3xl font-bold text-slate-900">
+                    Câu hỏi thường gặp
                 </h2>
-                <p className="text-muted-foreground mt-2">Giải đáp những thắc mắc phổ biến nhất</p>
+                <p className="text-slate-500 mt-2">Giải đáp những thắc mắc phổ biến nhất</p>
              </div>
 
-            <Card className="border border-border/50 bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm shadow-xl overflow-hidden">
+            <Card className="border border-slate-200 bg-white shadow-sm overflow-hidden rounded-xl">
               <Accordion type="single" collapsible className="w-full">
                 {[ 
                     {
@@ -233,37 +214,23 @@ export default function ContactPage() {
                         a: "CinemaHub sử dụng các phương thức thanh toán bảo mật cao: \n• Thanh toán qua thẻ tín dụng/ghi nợ (Visa, Mastercard) \n• Ví điện tử (MoMo, ZaloPay, ViettelPay) \n• Chuyển khoản ngân hàng \nTất cả giao dịch đều được mã hóa SSL 256-bit và tuân thủ PCI DSS."
                     }
                 ].map((item, index) => (
-                    <AccordionItem key={index} value={`item-${index + 1}`} className="border-border/50 px-6">
-                        <AccordionTrigger className="text-left py-5 hover:text-primary transition-colors font-medium text-lg">
+                    <AccordionItem key={index} value={`item-${index + 1}`} className="border-slate-100 px-6">
+                        <AccordionTrigger className="text-left py-5 hover:text-primary transition-colors font-medium text-lg text-slate-900">
                             {item.q}
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground whitespace-pre-line leading-relaxed pb-6">
+                        <AccordionContent className="text-slate-600 whitespace-pre-line leading-relaxed pb-6">
                             {item.a}
                         </AccordionContent>
                     </AccordionItem>
                 ))}
-                
-                <AccordionItem value="item-more" className="border-border/50 px-6 border-none">
-                     <AccordionTrigger className="text-left py-5 hover:text-primary transition-colors font-medium text-lg text-primary/80">
-                        Xem thêm câu hỏi khác
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                        <p>Liên hệ trực tiếp với chúng tôi nếu bạn không tìm thấy câu trả lời.</p>
-                    </AccordionContent>
-                </AccordionItem>
               </Accordion>
             </Card>
         </div>
 
         {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-3xl bg-primary p-12 text-center text-primary-foreground shadow-2xl">
-          {/* Animated Background Effects */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-accent mix-blend-multiply" />
-          <div className="absolute -top-24 -right-24 h-64 w-64 bg-white/20 blur-3xl rounded-full animate-pulse" />
-          <div className="absolute -bottom-24 -left-24 h-64 w-64 bg-white/20 blur-3xl rounded-full animate-pulse delay-1000" />
-          
+        <div className="relative overflow-hidden rounded-3xl bg-primary p-12 text-center text-primary-foreground shadow-lg">
           <div className="relative z-10 space-y-8 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Cần Hỗ Trợ Ngay Lập Tức?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Cần hỗ trợ ngay lập tức?</h2>
             <p className="text-lg md:text-xl text-primary-foreground/90 font-light leading-relaxed">
               Đội ngũ chăm sóc khách hàng của chúng tôi luôn túc trực để đảm bảo bạn có trải nghiệm điện ảnh tuyệt vời nhất.
             </p>
@@ -271,7 +238,7 @@ export default function ContactPage() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-background text-foreground hover:bg-background/90 font-bold shadow-xl h-14 px-8 rounded-xl border-2 border-transparent hover:border-primary transition-all"
+                className="bg-white text-slate-900 hover:bg-slate-50 font-bold shadow-md h-14 px-8 rounded-xl"
               >
                 <Phone className="w-5 h-5 mr-2 text-primary" />
                 Hotline: 1900 1234
@@ -279,10 +246,10 @@ export default function ContactPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-white/40 text-white hover:bg-white/10 font-bold h-14 px-8 rounded-xl backdrop-blur-sm transition-all"
+                className="bg-transparent border-white/40 text-white hover:bg-white/10 font-bold h-14 px-8 rounded-xl backdrop-blur-sm"
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
-                Chat Trực Tuyến
+                Chat trực tuyến
               </Button>
             </div>
           </div>

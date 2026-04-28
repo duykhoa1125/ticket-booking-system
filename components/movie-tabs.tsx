@@ -28,19 +28,17 @@ export function MovieTabs({
       className="w-full space-y-8"
     >
       <div className="flex justify-center">
-        <TabsList className="grid w-full max-w-md grid-cols-2 p-1 bg-muted/30 rounded-full border border-border/50">
+        <TabsList className="inline-flex h-10 items-center justify-center rounded-lg bg-slate-100 p-1 text-slate-500 border border-slate-200">
           <TabsTrigger
             value="now-showing"
-            className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-colors"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-1.5 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm"
           >
-            <Sparkles className="w-4 h-4 mr-2" />
             Đang chiếu ({nowShowingMovies.length})
           </TabsTrigger>
           <TabsTrigger
             value="coming-soon"
-            className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-colors"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-1.5 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm"
           >
-            <Clock className="w-4 h-4 mr-2" />
             Sắp chiếu ({comingSoonMovies.length})
           </TabsTrigger>
         </TabsList>

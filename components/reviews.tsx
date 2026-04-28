@@ -47,7 +47,7 @@ export function Reviews({
         <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
           <MessageSquarePlus className="w-5 h-5" />
         </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-bold text-slate-900">
           Đánh giá từ khán giả
         </h2>
       </div>

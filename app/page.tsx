@@ -1,10 +1,11 @@
 import { Carousel } from "@/components/carousel";
-import { movieService, cinemaService, eventService } from "@/services";
+import { movieService, cinemaService, eventService, Movie, Cinema, Event } from "@/services";
 import { MovieTabs } from "@/components/movie-tabs";
 import { CinemaCard } from "@/components/cinema-card";
 import { EventCard } from "@/components/event-card";
 import Link from "next/link";
 import { Film, ArrowRight, MapPin, Calendar, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Trang chủ - CinemaHub | Đặt vé phim online nhanh chóng",
@@ -72,10 +73,10 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="relative mx-auto max-w-7xl px-6 pt-12 pb-10">
         <div className="mb-12 text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary border border-border mb-6">
             <Film className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">
-              Premium Cinema Experience
+            <span className="text-xs font-medium text-secondary-foreground uppercase tracking-wider">
+              Hệ thống đặt vé hiện đại
             </span>
           </div>
 
@@ -128,21 +129,15 @@ export default async function Home() {
           comingSoonMovies={comingSoonMovies}
         />
       </section>
-
-      {/* Featured Events Section */}
       {activeEvents.length > 0 && (
-        <section className="bg-muted/30 py-20 border-y border-border/40 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50 pointer-events-none" />
+        <section className="bg-slate-50 py-20 border-y border-border">
           <div className="mx-auto max-w-7xl px-6 relative">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 text-primary font-semibold mb-2">
-                  <Calendar className="w-4 h-4" />
-                  <span>Tin tức & Sự kiện</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold">
+                <h2 className="text-3xl font-bold tracking-tight">
                   Sự kiện nổi bật
                 </h2>
+                <p className="text-muted-foreground mt-2">Cập nhật tin tức và khuyến mãi mới nhất</p>
               </div>
               <Link href="/events">
                 <span className="group flex items-center gap-2 text-primary font-medium hover:underline">
@@ -169,11 +164,8 @@ export default async function Home() {
         <section className="mx-auto max-w-7xl px-6 py-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 text-primary font-semibold mb-2">
-                <MapPin className="w-4 h-4" />
-                <span>Hệ thống rạp</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold">Rạp chiếu phim</h2>
+              <h2 className="text-3xl font-bold tracking-tight">Hệ thống rạp</h2>
+              <p className="text-muted-foreground mt-2">Trải nghiệm điện ảnh tại các rạp gần bạn</p>
             </div>
             <Link href="/cinemas">
               <span className="group flex items-center gap-2 text-primary font-medium hover:underline">
@@ -197,9 +189,9 @@ export default async function Home() {
       )}
 
       {/* Promotional Section */}
-      <section className="border-y border-border/40 bg-card/30 py-20">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary p-12 shadow-xl transition-all duration-300">
+          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-12 shadow-sm transition-all duration-300">
             {/* Content */}
             <div className="relative flex flex-col md:flex-row items-center md:items-start gap-8">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20">
@@ -207,16 +199,16 @@ export default async function Home() {
               </div>
 
               <div className="flex-1 text-center md:text-left">
-                <h3 className="mb-4 text-4xl font-bold text-white">
+                <h3 className="mb-4 text-4xl font-bold text-slate-900">
                   Ưu đãi đặc biệt dành cho bạn
                 </h3>
-                <p className="mb-8 max-w-2xl text-lg text-white/90 leading-relaxed">
+                <p className="mb-8 max-w-2xl text-lg text-slate-600 leading-relaxed">
                   Khám phá hàng ngàn voucher giảm giá và chương trình khuyến mãi
                   độc quyền. Đặt vé ngay hôm nay để nhận ưu đãi tốt nhất!
                 </p>
 
                 <Link href="/promotions">
-                  <button className="group/btn inline-flex items-center gap-3 rounded-2xl bg-white px-10 py-5 font-bold text-primary shadow-lg transition-all active:scale-95">
+                  <button className="group/btn inline-flex items-center gap-3 rounded-xl bg-primary px-8 py-4 font-bold text-primary-foreground shadow-md transition-all active:scale-95">
                     <span className="text-lg">Xem tất cả ưu đãi</span>
                     <ArrowRight className="h-6 w-6 transition-transform group-hover/btn:translate-x-1" />
                   </button>

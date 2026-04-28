@@ -99,18 +99,15 @@ export default function PromotionsPage() {
   const usedVouchers = userVouchers.filter((v) => v.state === "used");
   const expiredVouchers = userVouchers.filter((v) => v.state === "expired");
 
-  // Show login prompt only if not authenticated at all
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden">
-        {/* Ambient Background */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
-        <div className="text-center z-10">
-          <h1 className="text-3xl font-bold mb-6">Vui lòng đăng nhập</h1>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-6 text-slate-900">Vui lòng đăng nhập</h1>
           <Button
             asChild
             size="lg"
-            className="rounded-xl font-bold shadow-lg hover:shadow-primary/20"
+            className="rounded-xl font-bold shadow-md"
           >
             <Link href="/account/login">Đăng nhập ngay</Link>
           </Button>
@@ -267,12 +264,11 @@ export default function PromotionsPage() {
 
     return (
       <Card
-        className={`relative overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm rounded-xl transition-all duration-300 hover:shadow-lg hover:border-primary/40 group`}
+        className={`relative overflow-hidden border border-slate-200 bg-white rounded-xl transition-all duration-300 hover:shadow-md hover:border-primary group`}
       >
-        {/* Decorative elements - Top Left Corner */}
-        <div className="absolute -top-3 -left-3 h-6 w-6 rounded-full bg-background border border-border group-hover:border-primary/40 transition-all duration-300" />
-        {/* Decorative elements - Bottom Right Corner */}
-        <div className="absolute -bottom-3 -right-3 h-6 w-6 rounded-full bg-background border border-border group-hover:border-primary/40 transition-all duration-300" />
+        {/* Perforation holes */}
+        <div className="absolute -top-3 -left-3 h-6 w-6 rounded-full bg-slate-50 border border-slate-200" />
+        <div className="absolute -bottom-3 -right-3 h-6 w-6 rounded-full bg-slate-50 border border-slate-200" />
 
         <div className="relative p-4 flex gap-4 items-center justify-between">
           {/* Main Voucher Info */}
@@ -398,32 +394,21 @@ export default function PromotionsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Ambient Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
-
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-muted/5 pointer-events-none" />
-
-      <div className="relative mx-auto max-w-7xl px-6 py-16">
+    <div className="min-h-screen bg-slate-50">
+      <div className="mx-auto max-w-7xl px-6 py-16">
         {/* Hero Section */}
-        <div className="mb-16 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-medium animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <Gift className="w-4 h-4" />
-            <span>Ưu Đãi Dành Riêng Cho Bạn</span>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold text-foreground animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100 tracking-tight">
-            Voucher & Quà Tặng
+        <div className="mb-16 text-center space-y-4">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900">
+            Voucher & Quà tặng
           </h1>
 
-          <div className="flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200 bg-card/50 backdrop-blur-sm border border-border/50 rounded-full px-6 py-2 w-fit mx-auto">
-            <p className="text-lg text-muted-foreground font-medium">
+          <div className="flex items-center justify-center gap-3 bg-white border border-slate-200 rounded-full px-6 py-2 w-fit mx-auto shadow-sm">
+            <p className="text-sm text-slate-500 font-medium">
               Hạng thành viên:
             </p>
             {getMemberLevelBadge(userLevel)}
-            <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-            <p className="text-lg text-muted-foreground">
+            <span className="w-1 h-1 rounded-full bg-slate-300" />
+            <p className="text-sm text-slate-600">
               <span className="font-bold text-primary">
                 {user.membership_points}
               </span>{" "}
@@ -435,19 +420,16 @@ export default function PromotionsPage() {
         {/* Main Content */}
         <>
           {/* Search and Filter */}
-          <div className="mb-16 max-w-2xl mx-auto space-y-6">
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-primary/20 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
-              <div className="relative flex items-center bg-card/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-sm">
-                <Search className="absolute left-4 text-muted-foreground w-5 h-5" />
-                <Input
-                  type="text"
-                  placeholder="Tìm kiếm voucher..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 h-14 border-none bg-transparent focus-visible:ring-0 text-lg placeholder:text-muted-foreground/70"
-                />
-              </div>
+          <div className="mb-12 max-w-2xl mx-auto space-y-6">
+            <div className="relative flex items-center bg-white rounded-xl border border-slate-200 shadow-sm transition-all focus-within:border-primary">
+              <Search className="absolute left-4 text-slate-400 w-5 h-5" />
+              <Input
+                type="text"
+                placeholder="Tìm kiếm voucher..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-12 h-12 border-none bg-transparent focus-visible:ring-0 text-base"
+              />
             </div>
 
             <Tabs
@@ -457,22 +439,22 @@ export default function PromotionsPage() {
               }
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-3 bg-card/50 backdrop-blur-sm p-1 rounded-xl h-14 border border-border/50">
+              <TabsList className="inline-flex h-10 items-center justify-center rounded-lg bg-slate-100 p-1 text-slate-500 border border-slate-200 w-full max-w-md mx-auto flex">
                 <TabsTrigger
                   value="all"
-                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
+                  className="flex-1 rounded-md px-4 py-1.5 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm"
                 >
                   Tất cả
                 </TabsTrigger>
                 <TabsTrigger
                   value="discount"
-                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
+                  className="flex-1 rounded-md px-4 py-1.5 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm"
                 >
                   Giảm Giá
                 </TabsTrigger>
                 <TabsTrigger
                   value="gift"
-                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all font-medium text-base"
+                  className="flex-1 rounded-md px-4 py-1.5 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm"
                 >
                   Quà Tặng
                 </TabsTrigger>

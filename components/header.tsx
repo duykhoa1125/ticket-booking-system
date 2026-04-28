@@ -29,14 +29,14 @@ export function Header() {
   const { currentUser, logout, isAdmin } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 glass shadow-sm transition-all duration-300">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2 transition-all">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20 transition-all group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/30">
-            <Film className="h-6 w-6 text-primary-foreground" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary shadow-sm transition-all group-hover:scale-105">
+            <Film className="h-5 w-5 text-primary-foreground" />
           </div>
-          <span className="text-2xl font-bold text-primary">
+          <span className="text-xl font-bold text-slate-900">
             CinemaHub
           </span>
         </Link>
@@ -50,46 +50,34 @@ export function Header() {
         <nav className="flex items-center gap-1">
           <Link
             href="/events"
-            className="group relative flex items-center gap-2 rounded-lg px-2 lg:px-4 py-2 text-sm font-medium text-foreground/80 transition-all hover:text-primary whitespace-nowrap after:absolute after:bottom-0 after:left-1/2 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full"
+            className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-all hover:text-primary hover:bg-slate-50"
           >
-            <Calendar className="h-4 w-4 transition-colors group-hover:text-primary" />
-            <span className="relative z-10 transition-colors group-hover:text-primary hidden lg:inline">
-              Sự kiện
-            </span>
-            <div className="absolute inset-0 rounded-lg bg-primary/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <Calendar className="h-4 w-4" />
+            <span className="hidden lg:inline">Sự kiện</span>
           </Link>
 
           <Link
             href="/cinemas"
-            className="group relative flex items-center gap-2 rounded-lg px-2 lg:px-4 py-2 text-sm font-medium text-foreground/80 transition-all hover:text-primary whitespace-nowrap after:absolute after:bottom-0 after:left-1/2 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full"
+            className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-all hover:text-primary hover:bg-slate-50"
           >
-            <MapPin className="h-4 w-4 transition-colors group-hover:text-primary" />
-            <span className="relative z-10 transition-colors group-hover:text-primary hidden lg:inline">
-              Rạp chiếu
-            </span>
-            <div className="absolute inset-0 rounded-lg bg-primary/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <MapPin className="h-4 w-4" />
+            <span className="hidden lg:inline">Rạp chiếu</span>
           </Link>
 
           <Link
             href="/account/order-history"
-            className="group relative flex items-center gap-2 rounded-lg px-2 lg:px-4 py-2 text-sm font-medium text-foreground/80 transition-all hover:text-primary whitespace-nowrap after:absolute after:bottom-0 after:left-1/2 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full"
+            className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-all hover:text-primary hover:bg-slate-50"
           >
-            <Ticket className="h-4 w-4 transition-colors group-hover:text-primary" />
-            <span className="relative z-10 transition-colors group-hover:text-primary hidden lg:inline">
-              Lịch sử đơn
-            </span>
-            <div className="absolute inset-0 rounded-lg bg-primary/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <Ticket className="h-4 w-4" />
+            <span className="hidden lg:inline">Lịch sử đơn</span>
           </Link>
 
           <Link
             href="/about"
-            className="group relative flex items-center gap-2 rounded-lg px-2 lg:px-4 py-2 text-sm font-medium text-foreground/80 transition-all hover:text-primary whitespace-nowrap after:absolute after:bottom-0 after:left-1/2 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full"
+            className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-all hover:text-primary hover:bg-slate-50"
           >
-            <Phone className="h-4 w-4 transition-colors group-hover:text-primary" />
-            <span className="relative z-10 transition-colors group-hover:text-primary hidden lg:inline">
-              Liên hệ
-            </span>
-            <div className="absolute inset-0 rounded-lg bg-primary/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <Phone className="h-4 w-4" />
+            <span className="hidden lg:inline">Liên hệ</span>
           </Link>
 
           {/* Admin Panel Link - Only visible to admins */}

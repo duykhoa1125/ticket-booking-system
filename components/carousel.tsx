@@ -38,9 +38,8 @@ export function Carousel({ items }: CarouselProps) {
             alt={item.name}
             className="h-full w-full object-cover"
           />
-          {/* Enhanced Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          {/* Subtle Overlay for readability */}
+          <div className="absolute inset-0 bg-black/60" />
 
           <div className="absolute bottom-0 left-0 right-0 p-12 text-white">
             <div className="max-w-3xl space-y-4">
@@ -65,29 +64,29 @@ export function Carousel({ items }: CarouselProps) {
       {/* Controls */}
       <button
         onClick={prev}
-        className="absolute left-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 p-4 transition-all hover:bg-primary opacity-0 group-hover:opacity-100"
+        className="absolute left-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/40 border border-white/20 p-3 transition-all hover:bg-white hover:shadow-md opacity-0 group-hover:opacity-100"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6 text-white" />
+        <ChevronLeft className="h-5 w-5 text-slate-900" />
       </button>
       <button
         onClick={next}
-        className="absolute right-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 p-4 transition-all hover:bg-primary opacity-0 group-hover:opacity-100"
+        className="absolute right-6 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/40 border border-white/20 p-3 transition-all hover:bg-white hover:shadow-md opacity-0 group-hover:opacity-100"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6 text-white" />
+        <ChevronRight className="h-5 w-5 text-slate-900" />
       </button>
 
       {/* Indicators */}
-      <div className="absolute bottom-8 right-12 z-10 flex gap-3">
+      <div className="absolute bottom-8 right-12 z-10 flex gap-2.5">
         {items.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               index === current
-                ? "w-8 bg-primary"
-                : "w-4 bg-white/30 hover:bg-white/50"
+                ? "w-8 bg-white"
+                : "w-1.5 bg-white/40 hover:bg-white/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

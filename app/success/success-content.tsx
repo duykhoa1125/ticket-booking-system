@@ -55,25 +55,19 @@ export function SuccessContent() {
   const finalPrice = bookingData.totalPrice
 
   return (
-    <main className="min-h-screen bg-background relative overflow-hidden">
-      {/* Ambient Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
-      
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-muted/5 pointer-events-none" />
-
+    <main className="min-h-screen bg-slate-50">
       <div className="relative mx-auto max-w-3xl px-6 py-12">
         {/* Success Header */}
-        <div className="mb-12 text-center space-y-6 animate-in slide-in-from-bottom-4 duration-700">
+        <div className="mb-12 text-center space-y-4">
           <div className="inline-flex justify-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-500 shadow-2xl shadow-green-500/30 animate-bounce-slow">
-              <CheckCircle2 className="h-12 w-12 text-white" strokeWidth={3} />
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-500 shadow-lg shadow-green-100">
+              <CheckCircle2 className="h-10 w-10 text-white" strokeWidth={3} />
             </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black text-foreground tracking-tight">
-            Đặt Vé Thành Công!
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+            Đặt vé thành công!
           </h1>
-          <p className="text-xl text-muted-foreground max-w-lg mx-auto font-light">
+          <p className="text-lg text-slate-600 max-w-lg mx-auto">
             Vé của bạn đã được xác nhận. Chúc bạn có những giây phút xem phim tuyệt vời!
           </p>
         </div>

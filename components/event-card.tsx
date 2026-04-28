@@ -25,37 +25,31 @@ export function EventCard({ event }: EventCardProps) {
   }
 
   return (
-    <Card className="group overflow-hidden border-border bg-card hover:border-primary/30 transition-colors h-full flex flex-col shadow-sm">
-      {/* Image Section */}
-      <div className="relative aspect-video overflow-hidden shrink-0 bg-primary/5">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Sparkles className="w-12 h-12 text-primary/20" />
-        </div>
+    <Card className="group overflow-hidden border-slate-200 bg-white transition-all duration-300 hover:border-primary hover:shadow-md h-full flex flex-col rounded-xl">
+      {/* Visual Header */}
+      <div className="relative aspect-video overflow-hidden shrink-0 bg-slate-50 border-b border-slate-100 flex items-center justify-center">
+        <Sparkles className="w-10 h-10 text-slate-200 group-hover:text-primary/20 transition-colors" />
 
         {/* Status Badge Overlay */}
         <div className="absolute top-3 right-3">
-          <Badge className={`${statusColor} border shadow-sm`}>
+          <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm border-slate-200 text-xs font-semibold px-2 py-0.5">
             {statusText}
           </Badge>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="p-6 flex flex-col flex-1 space-y-4">
-        {/* Header */}
+      <div className="p-5 flex flex-col flex-1 space-y-3">
         <div>
-          <h3 className="text-xl font-bold group-hover:text-primary transition-colors mb-2">
+          <h3 className="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors mb-1 line-clamp-1">
             {event.name}
           </h3>
 
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4" />
-              <span>
-                {startDate.toLocaleDateString("vi-VN")} -{" "}
-                {endDate.toLocaleDateString("vi-VN")}
-              </span>
-            </div>
+          <div className="flex items-center gap-2 text-xs text-slate-500">
+            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+            <span>
+              {startDate.toLocaleDateString("vi-VN")} - {endDate.toLocaleDateString("vi-VN")}
+            </span>
           </div>
         </div>
 

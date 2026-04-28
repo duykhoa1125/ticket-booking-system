@@ -66,26 +66,21 @@ export default async function MovieDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Ambient Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
-
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-muted/5 pointer-events-none" />
+    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
 
       {/* Breadcrumb Navigation */}
-      <div className="border-b border-border/40 bg-card/50 backdrop-blur-md sticky top-0 z-40">
-        <div className="mx-auto max-w-7xl px-6 py-4">
+      <div className="border-b border-slate-200 bg-white sticky top-0 z-40">
+        <div className="mx-auto max-w-7xl px-6 py-3">
           <Breadcrumb
             items={[{ label: "Phim", href: "/" }, { label: movie.name }]}
           />
         </div>
       </div>
 
-      {/* Hero Section - Compact Modern Layout */}
-      <section className="mx-auto max-w-6xl px-6 py-8">
-        {/* Main Info - Horizontal Layout */}
-        <div className="mb-8 flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 shadow-lg lg:flex-row">
+      {/* Hero Section */}
+      <section className="mx-auto max-w-6xl px-6 py-12">
+        {/* Main Info */}
+        <div className="mb-8 flex flex-col gap-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm lg:flex-row">
           {/* Poster - Compact */}
           <div className="shrink-0">
             <div className="group relative h-[400px] w-[270px] overflow-hidden rounded-xl shadow-xl">
@@ -120,7 +115,7 @@ export default async function MovieDetailPage({
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <Badge
                   variant={movie.status === "showing" ? "default" : "outline"}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground border-none px-3 py-1"
+                  className="rounded-lg px-3 py-1 font-semibold"
                 >
                   {movie.status === "showing"
                     ? "Đang chiếu"
@@ -131,17 +126,17 @@ export default async function MovieDetailPage({
                 {movie.age_rating > 0 && (
                   <Badge
                     variant="outline"
-                    className="bg-red-500/20 hover:bg-red-500/30 text-red-300 border-red-500/50 px-3 py-1"
+                    className="bg-red-50 border-red-200 text-red-600 rounded-lg px-3 py-1 font-semibold"
                   >
                     {movie.age_rating}+
                   </Badge>
                 )}
               </div>
 
-              <h1 className="mb-3 text-4xl md:text-5xl font-bold leading-tight text-foreground">
+              <h1 className="mb-3 text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
                 {movie.name}
               </h1>
-              <p className="text-base md:text-lg leading-relaxed text-muted-foreground line-clamp-3 font-light">
+              <p className="text-base md:text-lg leading-relaxed text-slate-600 line-clamp-3">
                 {movie.synopsis || ""}
               </p>
             </div>

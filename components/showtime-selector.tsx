@@ -74,11 +74,11 @@ export function ShowtimeSelector({
     <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary shadow-sm">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-primary border border-slate-200">
           <Calendar className="h-6 w-6" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+          <h3 className="text-2xl font-bold text-slate-900">
             Lịch chiếu
           </h3>
           <p className="text-sm text-muted-foreground">
@@ -109,7 +109,7 @@ export function ShowtimeSelector({
                 className={cn(
                   "group relative flex shrink-0 flex-col items-center gap-1 rounded-2xl border px-6 py-4 transition-all duration-300 snap-start min-w-[100px]",
                   isSelected
-                    ? "border-primary/50 bg-gradient-to-b from-primary to-primary/80 shadow-lg shadow-primary/20 scale-105"
+                    ? "border-primary bg-primary shadow-md scale-105"
                     : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card hover:shadow-md"
                 )}
               >
@@ -206,7 +206,7 @@ export function ShowtimeSelector({
                             className={cn(
                               "group relative cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300",
                               isSelected
-                                ? "border-2 border-primary bg-gradient-to-br from-primary/10 to-background shadow-xl shadow-primary/10 scale-[1.02]"
+                                ? "border-2 border-primary bg-white shadow-md scale-[1.02]"
                                 : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:-translate-y-1"
                             )}
                           >
@@ -258,7 +258,7 @@ export function ShowtimeSelector({
                                 href={`/book-ticket/${showtime.showtime_id}`}
                                 className="w-full px-6"
                               >
-                                <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-lg font-bold h-12 rounded-xl group-hover:scale-105 transition-transform">
+                                <Button className="w-full bg-primary hover:bg-primary/90 shadow-md text-lg font-bold h-12 rounded-xl group-hover:scale-105 transition-transform">
                                   Đặt vé ngay{" "}
                                   <ChevronRight className="ml-2 h-5 w-5" />
                                 </Button>

@@ -37,8 +37,8 @@ export function RatingSummary({ movie, reviews }: RatingSummaryProps) {
   return (
     <div className="space-y-6 p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm">
       <div className="flex flex-col items-center gap-6">
-        <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 min-w-[120px]">
-          <span className="text-5xl font-black bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent">
+        <div className="flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-50 border border-slate-200 min-w-[120px]">
+          <span className="text-5xl font-black text-slate-900">
             {avgRating.toFixed(1)}
           </span>
           <div className="flex gap-1 my-2">
@@ -76,7 +76,7 @@ export function RatingSummary({ movie, reviews }: RatingSummaryProps) {
 
                 <div className="h-2.5 flex-1 rounded-full bg-muted/50 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-[0_0_10px_rgba(250,204,21,0.3)] transition-all duration-500 group-hover:brightness-110"
+                    className="h-full rounded-full bg-yellow-400 transition-all duration-500"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>

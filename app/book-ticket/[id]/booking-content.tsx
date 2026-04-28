@@ -179,16 +179,10 @@ export function BookingContent({ showtime, movie }: BookingContentProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-background relative overflow-hidden">
-      {/* Ambient Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
-
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-
+    <main className="min-h-screen bg-slate-50">
       {/* Breadcrumb */}
-      <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm sticky top-0 z-40">
-        <div className="mx-auto max-w-7xl px-6 py-4">
+      <div className="border-b border-slate-200 bg-white sticky top-0 z-40">
+        <div className="mx-auto max-w-7xl px-6 py-3">
           <Breadcrumb
             items={[
               { label: "Phim", href: "/" },
@@ -201,36 +195,35 @@ export function BookingContent({ showtime, movie }: BookingContentProps) {
 
       <div className="mx-auto w-full max-w-[1800px] px-4 md:px-8 py-8">
         {/* Movie Header Card */}
-        <div className="mb-8 rounded-3xl bg-gradient-to-br from-card to-card/50 border border-border/50 p-6 shadow-xl relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
-            <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl shadow-lg ring-1 ring-white/10">
+        <div className="mb-8 rounded-2xl bg-white border border-slate-200 p-6 shadow-sm">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl shadow-sm border border-slate-200">
               <img
                 src={movie.image}
                 alt={movie.name}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="h-full w-full object-cover"
               />
             </div>
-            <div className="flex-1 space-y-2">
-              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+            <div className="flex-1 space-y-3 text-center md:text-left">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
                 {movie.name}
               </h2>
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-lg border border-border/50">
+              <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm text-slate-500">
+                <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
                   <MapPin className="w-4 h-4 text-primary" />
-                  <span className="font-medium text-foreground">
+                  <span className="font-semibold text-slate-700">
                     {roomName}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-lg border border-border/50">
+                <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
                   <Calendar className="w-4 h-4 text-primary" />
-                  <span className="font-medium text-foreground capitalize">
+                  <span className="font-semibold text-slate-700 capitalize">
                     {date}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-lg border border-border/50">
+                <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
                   <Clock className="w-4 h-4 text-primary" />
-                  <span className="font-medium text-foreground">{time}</span>
+                  <span className="font-semibold text-slate-700">{time}</span>
                 </div>
               </div>
             </div>
@@ -240,9 +233,9 @@ export function BookingContent({ showtime, movie }: BookingContentProps) {
         {/* Steps Indicator */}
         <div className="mb-12">
           <div className="relative flex justify-between max-w-2xl mx-auto">
-            <div className="absolute top-1/2 left-0 w-full h-1 bg-muted -translate-y-1/2 rounded-full" />
+            <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2 rounded-full" />
             <div
-              className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 rounded-full transition-all duration-500 ease-out"
+              className="absolute top-1/2 left-0 h-0.5 bg-primary -translate-y-1/2 rounded-full transition-all duration-500 ease-out"
               style={{
                 width: bookingStep === "seats" ? "0%" : "100%",
               }}
@@ -258,12 +251,12 @@ export function BookingContent({ showtime, movie }: BookingContentProps) {
                   className="relative z-10 flex flex-col items-center gap-2"
                 >
                   <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-full font-bold transition-all duration-300 border-4 ${
+                    className={`flex h-10 w-10 items-center justify-center rounded-full font-bold transition-all duration-300 border-2 ${
                       isActive
-                        ? "bg-primary border-background text-primary-foreground shadow-lg shadow-primary/30 scale-110"
+                        ? "bg-primary border-primary text-primary-foreground shadow-md"
                         : isCompleted
-                        ? "bg-primary border-background text-primary-foreground"
-                        : "bg-muted border-background text-muted-foreground"
+                        ? "bg-primary border-primary text-primary-foreground"
+                        : "bg-white border-slate-200 text-slate-400"
                     }`}
                   >
                     {isCompleted ? (
