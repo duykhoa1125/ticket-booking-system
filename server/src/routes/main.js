@@ -7,6 +7,7 @@ const otherRouter = require("./other_route");
 const promotionRouter = require("./promotion_route");
 const adminRouter = require("./admin_route");
 const reviewRouter = require("./review_route");
+const { executeQuery } = require("../models/connect_sql");
 function router(app) {
   app.use("/auth", login);
   app.use("/cinemas", cinemaRouter);
