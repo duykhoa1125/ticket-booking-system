@@ -17,6 +17,15 @@ function router(app) {
   app.use("/promotions", promotionRouter);
   app.use("/admin", adminRouter);
   app.use("/reviews", reviewRouter);
+
+  app.get("/health/db", async (req, res) => {
+    try {
+      await executeQuery("SELECT 1");
+      res.status(200).json({ database: "Connected" });
+    } catch {
+      res.status(500).json({ database: "Disconnected" });
+    }
+  });
 }
 
 module.exports = router;
