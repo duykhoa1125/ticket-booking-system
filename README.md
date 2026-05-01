@@ -1,117 +1,102 @@
-# 🎬 Hệ Thống Đặt Vé Xem Phim (Movie Ticket Booking System)
+# 🎬 Movie Ticket Booking System
 
-<div align="center">
-  <img alt="Project Banner" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop" height="250" style="object-fit: cover;" />
-  <p>Đồ án môn học <strong>Hệ Cơ Sở Dữ Liệu</strong></p>
-</div>
+## 📑 Project Overview
+This is a comprehensive online movie ticket booking system developed for a **Database Systems** course. The platform simulates real-world services like CGV or Lotte Cinema. The core focus is on a highly normalized **MySQL** database (3NF) and the implementation of business logic through **Triggers**, **Stored Procedures**, and **Transactions** directly within the database layer to ensure data integrity and high performance.
 
-## 📑 Giới thiệu chung
-Đây là dự án xây dựng một hệ thống đặt vé xem phim trực tuyến (Mô phỏng giống CGV, Lotte Cinema...), được phát triển như một phần thiết yếu của môn học **Hệ Cơ Sở Dữ Liệu**. Trọng tâm của dự án là việc thiết kế Database chuẩn hóa dạng chuẩn 3 (3NF), cũng như rèn luyện cách xử lý các Query ràng buộc phức tạp bằng các Ràng buộc khóa (Constraints), Trigger và Stored Procedure trực tiếp dưới CSDL mà không phụ thuộc hoàn toàn vào Backend.
+## ✨ Key Features
+### 👤 User Experience
+- **Secure Authentication**: JWT-based login and registration system.
+- **Membership Program**: Tiered loyalty system (Copper, Gold, Diamond, VIP) with automated rank progression based on accumulated points.
+- **Movie Discovery**: Browse films by status (Now Showing, Upcoming) with rich metadata and reviews.
 
-## ✨ Các tính năng chính
-Hệ thống chia làm nhiều Module tương tác lẫn nhau:
-* **👤 Quản lý người dùng**: Đăng nhập, đăng ký sử dụng Token (JWT). Phân quyền Admin - Quản lý rạp và Khách hàng. Hệ thống thăng hạng hội viên thân thiết (Đồng, Bạc, Vàng, Kim Cương, VIP) dựa vào Điểm tích lũy.
-* **🍿 Quản lý Rạp & Suất Chiếu**: Quản lý nhiều Cụm rạp (Rạp chiếu) khác nhau, nhiều Phòng chiếu ở các rạp. Hệ thống tự động phân loại tình trạng hiển thị phim theo ngày khởi chiếu và mã phim.
-* **🎫 Quy trình đặt vé đa bước**: Chọn phim ➡️ Chọn cụm rạp, suất chiếu theo ngày giờ ➡️ Chọn loại ghế ngồi (Thường, VIP, Couple) ➡️ Mua thêm Đồ ăn/Nước cuốn chung trong Ticket ➡️ Áp dụng mã Giảm giá (Voucher) ➡️ Thanh toán vé.
-* **🎁 Khuyến mãi & Sự kiện**: Hệ thống tự động liên kết sự kiện theo Cấp độ thẻ thành viên người dùng để tung ra Voucher và số tiền chiết khấu.
-* **⭐ Đánh giá phim**: Hệ thống chấm điểm trực quan từ người đã xem thực tế.
+### 🎫 Booking Workflow
+- **Multi-step Reservation**: Intuitive flow from movie selection to payment.
+- **Interactive Seat Mapping**: Select from various seat types including **Standard**, **VIP**, and **Couple**.
+- **Food & Beverage**: Order snacks and drinks as part of the ticket booking process.
+- **Dynamic Vouchers**: Apply promotional codes linked to membership tiers and special events.
 
-## 🛠 Điểm nhấn về Kỹ thuật Cơ Sở Dữ Liệu (Database Highlights)
-Hệ thống tận dụng chuyên sâu sức mạnh của **MySQL (RDBMS)**:
-- **Tự động sinh mã (Triggers)**: Thay vì dùng Auto Increment đơn điệu, các `BEFORE INSERT` Trigger được cài cắm để sinh ra khóa chính (Primary Key) có định dạng chuẩn nghiệp vụ (VD: `RAP00001` cho Rạp chiếu, `NV00001` cho Nhân viên, `HD00001` cho Hóa đơn).
-- **Procedures & Functions**: Sử dụng `Stored Procedures` kết hợp Transaction (Commit/Rollback) để đảm bảo các thao tác nhiều bước (VD: "Đặt Vé" yêu cầu cập nhật ghế thành đã bán, tạo hóa đơn, tạo vé, và trừ tiền hoặc áp dụng voucher cùng một lúc) không bị xung đột dữ liệu (data inconsistency).
-- **Tính Toàn Vẹn Hệ Thống**: Sử dụng Strict Foreign Keys. Cascade linh việt theo logic. Ví dụ, xóa suất chiếu phải check vé đã phát hành chưa.
+### 🛠 Administrative Control
+- **Comprehensive Dashboard**: Real-time overview of system statistics.
+- **Resource Management**: Full CRUD operations for Movies, Cinema Halls, and Showtimes.
+- **Security**: Role-based access control (RBAC) ensuring only authorized staff can access the admin panel.
 
-## 🚀 Công nghệ sử dụng
-* **Frontend**: Next.js 16 (App Router), React 19, Tailwind CSS v4, shadcn/ui.
-* **Backend**: Node.js, Express.js.
-* **Cơ Sơ Dữ Liệu (Database)**: MySQL (mysql2 module).
-* **Bảo mật**: bcrypt (Mã hóa mật khẩu), jsonwebtoken.
+## 📐 Technical Architecture
+- **Frontend**: Next.js 15 (App Router), React 19, Tailwind CSS v4, Lucide React, Shadcn/UI.
+- **Backend**: Node.js, Express.js.
+- **Database**: MySQL with `mysql2` client.
+- **Database Logic**: 
+  - **Triggers**: Automated ID generation for all entities (e.g., `RAP00001`, `NV00001`).
+  - **Procedures**: Atomic transactions for complex bookings and point calculations.
+  - **Constraints**: Strict referential integrity to prevent orphan records.
 
-## ⚙️ Hướng dẫn cài đặt & Chạy dự án Local
+## 🚀 Getting Started
 
-### 1. Cài đặt Cơ Sở Dữ Liệu (MySQL)
-1. Cài đặt và mở **MySQL/MariaDB** (qua MySQL Workbench, XAMPP, DBeaver,...).
-2. Tạo database mới hoặc để script tự tạo, chạy lần lượt các script có trong thư mục `sql/`:
-   - **Bước 1**: Mở và chạy lệnh trong file `sql/TicketBookingSystem.sql` để khởi tạo Cấu trúc Bảng, Ràng Buộc, Triggers và insert sẵn lượng **Dữ liệu mẫu (Mock data)** (danh sách rạp, phim, user test...).
-   - **Bước 2**: Mở và chạy lệnh trong file `sql/procedures_triggers_functions.sql` để nạp các thủ tục nội trú (Procedures) và Functions cần thiết xử lý Logic tĩnh.
+### 1. Database Setup
+1. Install and start a **MySQL** server.
+2. Create a database named `TicketBookingSystem`.
+3. Execute the SQL scripts in the `sql/` directory:
+   - Run `sql/TicketBookingSystem.sql` first to create tables and seed initial data.
+   - Run `sql/procedures_triggers_functions.sql` to load the stored logic.
 
-### 2. Cài đặt Backend (Server)
-1. Mở màn hình Console / Terminal, chỉ đường dẫn vào thư mục `server`:
+### 2. Backend Installation
+1. Navigate to the `server` directory:
    ```bash
    cd server
-   ```
-2. Cú pháp cài đặt các thư viện (dependencies) thiết yếu:
-   ```bash
    npm install
    ```
-3. Mở file `server/.env` và cấu hình lại thông tin kết nối Database của ứng dụng trên máy bạn (Host, User, Password). Ví dụ:
+2. Create a `.env` file in the `server` folder:
    ```env
    host=localhost
-   user=root
-   password=mat_khau_mysql_cua_ban
+   user=your_mysql_username
+   password=your_mysql_password
    database=TicketBookingSystem
    JWT_SECRET=your_jwt_secret_token
    FRONTEND_URL=http://localhost:3000
    ```
-4. Khởi chạy Server Backend:
+3. Start the server:
    ```bash
    npm start
    ```
-   *Terminal sẽ thông báo server backend đang chạy ở cổng mặc định `localhost:5000`*.
 
-### 3. Cài đặt Frontend (Giao diện)
-1. Mở một terminal mới (Ở thẳng Root thư mục của dự án, tức là `ticket-booking-system/`):
+### 3. Frontend Installation
+1. From the project root:
    ```bash
    npm install
    ```
-2. Đảm bảo bạn có file `.env.local` ở thư mục gốc chứa cấu hình cổng kết nối tới backend (mặc định đã setup là 5000):
+2. Create a `.env.local` file in the root directory:
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:5000
    ```
-3. Chạy chương trình phía Front-end:
+3. Launch the development server:
    ```bash
    npm run dev
    ```
-   *Mở trình duyệt và truy cập: **http://localhost:3000***
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🔑 Tài khoản Testing (Mock Data)
-Bạn có thể sử dụng các tài khoản có sẵn trong CSDL mẫu để test tính năng hệ thống:
+## 🔑 Test Accounts
+| Role | Identity | Password |
+| --- | --- | --- |
+| **Admin** | `admin` | `123456789` |
+| **Customer** | `user1@gmail.com` | `password123` |
 
-**Tài khoản Quản lý (Admin):**
-- **Username:** `admin`
-- **Mật khẩu:** `123456789`
+## 📸 Project Showcase
+| | |
+| --- | --- |
+| ![Home Page](docs/images/home.png) | ![Movie Details](docs/images/movie-details.png) |
+| ![Seat Selection](docs/images/seats.png) | ![Admin Dashboard](docs/images/admin.png) |
 
-**Tài khoản Khách hàng (User):**
-- **Email:** `user1@gmail.com`
-- **Mật khẩu:** `password123`
-_(Hệ thống còn sinh sẵn `user2@gmail.com` tới `user5@gmail.com` với mật khẩu tương tự để test các phân hạng Bạc/Vàng/Kim Cương có trong logic CSDL)._
-
-<details>
-<summary><b>🛠 Script dữ liệu mẫu Khách hàng chi tiết</b></summary>
-
-```sql
-INSERT INTO TaiKhoan (so_dien_thoai, email, mat_khau, ho_ten, ngay_sinh, gioi_tinh, diem_tich_luy) VALUES
-('0912345678', 'user1@gmail.com', 'password123', N'Nguyễn Văn An', '1990-05-15', 'male', 1500),
-('0923456789', 'user2@gmail.com', 'password123', N'Trần Thị Bình', '1995-08-20', 'female', 800),
-('0934567890', 'user3@gmail.com', 'password123', N'Lê Văn Cường', '1988-12-10', 'male', 2500),
-('0945678901', 'user4@gmail.com', 'password123', N'Phạm Thị Dung', '1992-03-25', 'female', 3500),
-('0956789012', 'user5@gmail.com', 'password123', N'Hoàng Văn Em', '1985-11-30', 'male', 5200);
-```
-</details>
-
-## 🗃️ Cấu trúc thư mục (Folder Structure)
+## 📂 Project Structure
 ```text
 ticket-booking-system/
-├── app/                  # Frontend: Giao diện các trang Next.js (Home, Admin, Movie...)
-├── components/           # Frontend: Folder chứa UI Components (Shadcn/UI, Layout...)
-├── server/               # Backend: Node.js Express server
-│   ├── src/              # Logic của backend (Routes, Controllers, Services, Models)
-│   ├── package.json
-│   └── .env              # Thiết lập môi trường và cấu hình Database Info
-├── sql/                  # Kho SCripts chứa cấu trúc CSDL và dữ liệu của môn học
-│   ├── TicketBookingSystem.sql
-│   └── procedures_triggers_functions.sql
-├── package.json          # Core Frontend dependencies info
-└── README.md             # Tài liệu dự án bạn đang đọc!
+├── app/                  # Frontend: Next.js Pages & Routes
+├── components/           # Frontend: UI Components & Layouts
+├── server/               # Backend: Node.js Express Application
+│   ├── src/              # Logic: Routes, Controllers, Services, Models
+│   └── .env              # Backend Environment Variables
+├── sql/                  # Database: Schema, Procedures, and Mock Data
+├── public/               # Static Assets
+└── README.md             # Project Documentation
 ```
+
+---
+*Created as a Database Systems course project at Ho Chi Minh City University of Technology (HCMUT).*
