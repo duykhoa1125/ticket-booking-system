@@ -27,8 +27,13 @@ export function EventCard({ event }: EventCardProps) {
   return (
     <Card className="group overflow-hidden border-slate-200 bg-white transition-all duration-300 hover:border-primary hover:shadow-md h-full flex flex-col rounded-xl">
       {/* Visual Header */}
-      <div className="relative aspect-video overflow-hidden shrink-0 bg-slate-50 border-b border-slate-100 flex items-center justify-center">
-        <Sparkles className="w-10 h-10 text-slate-200 group-hover:text-primary/20 transition-colors" />
+      <div className="relative aspect-video overflow-hidden shrink-0 bg-slate-100 border-b border-slate-100">
+        <img
+          src="/images/event-default.png"
+          alt={event.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
         {/* Status Badge Overlay */}
         <div className="absolute top-3 right-3">

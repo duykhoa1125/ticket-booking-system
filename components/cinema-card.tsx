@@ -10,8 +10,13 @@ export function CinemaCard({ cinema }: CinemaCardProps) {
   return (
     <Card className="group overflow-hidden border-slate-200 bg-white transition-all duration-300 hover:border-primary hover:shadow-md flex flex-col h-full rounded-xl">
       {/* Visual Header */}
-      <div className="relative h-24 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
-        <Film className="w-10 h-10 text-slate-200 group-hover:text-primary/20 transition-colors" />
+      <div className="relative h-40 overflow-hidden bg-slate-100 border-b border-slate-100">
+        <img
+          src="/images/cinema-default.png"
+          alt={cinema.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
 
       <CardContent className="p-5 flex-1 space-y-3">
